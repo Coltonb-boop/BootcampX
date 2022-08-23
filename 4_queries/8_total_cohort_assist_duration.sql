@@ -1,7 +1,6 @@
-SELECT cohorts.name, AVG(completed_at - started_at) as avg_assistance_time
+SELECT cohorts.name, SUM(completed_at - started_at) as total_duration
 FROM cohorts
 JOIN students ON cohorts.id = cohort_id
 JOIN assistance_requests ON students.id = student_id
 GROUP BY cohorts.name
-ORDER BY avg_assistance_time DESC
-LIMIT 1;
+ORDER BY total_duration;
